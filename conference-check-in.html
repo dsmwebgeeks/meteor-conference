@@ -1,0 +1,48 @@
+<head>
+  <title>Conference Check In</title>
+</head>
+
+<body>
+  <div class="container">
+	<header>
+	  <h1>Conference Check In</h1>
+		
+		{{> loginButtons}}
+
+		{{#if currentUser}}
+<!-- 		  <form class="new-task">
+		    <input type="text" name="text" placeholder="Type to add new tasks" />
+		  </form>
+ -->		{{/if}}
+
+	</header>
+
+    <ul>
+      {{#each timeslots}}
+        {{> timeslot}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="timeslot">
+	<li>
+		{{time}}
+		<ul>
+	        {{#each talks}}
+		        {{> talk}}
+	        {{/each}}
+	    </ul>
+	</li>
+</template>
+
+<template name="talk">
+	<li>
+		<label>
+			{{#if currentUser}}
+			  <input type="checkbox" checked="{{attending}}" value="{{name}}"/>
+		  {{/if}}
+		  {{name}} - {{description}} ({{count}})
+		</label>
+	</li>
+</template>
